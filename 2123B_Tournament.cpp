@@ -1,36 +1,29 @@
 // Claude coded
 
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
-int main(){
+int main() {
     
     int t;
     cin >> t;
-    
-    while(t--) {
+    while (t--) {
         int n, j, k;
         cin >> n >> j >> k;
-        vector<int> a(n+1);
         
-        for(int i = 1; i <= n; i++) cin >> a[i];
+        int a[200005];
+        for (int i = 1; i <= n; i++) cin >> a[i];
         
-        int strength = a[j];
-        
-        int stronger = 0;
-        for(int i = 1; i <= n; i++){
-            if(a[i] > strength) stronger++;
-        }
-        
-        if(k == 1){
-            if(stronger == 0) cout << "YES\n";
-            else cout << "NO\n";
-        }
-        else{
-            if(stronger < k) cout << "YES\n";
-            else cout << "NO\n";
+        if (k >= 2) {
+            cout << "YES\n";
+        } else {
+            // k == 1: j must be the strongest
+            int stronger = 0;
+            for (int i = 1; i <= n; i++) {
+                if (i != j && a[i] > a[j]) stronger++;
+            }
+            cout << (stronger == 0 ? "YES" : "NO") << "\n";
         }
     }
-    
     return 0;
 }
